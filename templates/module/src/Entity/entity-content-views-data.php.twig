@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{ module }}\Entity\{{ entity_class }}.
+\Drupal\{{ machine_name }}\Entity\{{ entity_class }}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{ module }}\Entity;
+namespace Drupal\{{ machine_name }}\Entity;
 {% endblock %}
 
 {% block use_class %}

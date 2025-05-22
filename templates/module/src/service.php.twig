@@ -1,18 +1,18 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{module}}\{{ class }}.
+\Drupal\{{machine_name}}\{{ class }}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{module}};
+namespace Drupal\{{machine_name}};
 {% endblock %}
 
 {% block class_declaration %}
 /**
  * Class {{ class }}.
  *
- * @package Drupal\{{module}}
+ * @package Drupal\{{machine_name}}
  */
 class {{ class }}{% if(interface is defined and interface) %} implements {{ class }}Interface{% endif %} {% endblock %}
 {% block class_construct %}

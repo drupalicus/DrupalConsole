@@ -54,7 +54,7 @@ class GeneratorModuleCommand extends GeneratorCommand
                 'core',
                 '',
                 InputOption::VALUE_OPTIONAL,
-                $this->trans('commands.generate.module.options.core')
+                $this->trans('Drupal core version requirement (e.g., ^9 || ^10, 11.x)')
             )
             ->addOption(
                 'package',
@@ -287,8 +287,8 @@ class GeneratorModuleCommand extends GeneratorCommand
         if (!$core) {
             $core = $dialog->ask(
                 $output,
-                $dialog->getQuestion($this->trans('commands.generate.module.questions.core'), '8.x'),
-                '8.x'
+                $dialog->getQuestion($this->trans('commands.generate.module.questions.core'), '^9 || ^10'),
+                '^9 || ^10'
             );
         }
         $input->setOption('core', $core);

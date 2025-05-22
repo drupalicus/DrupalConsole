@@ -78,6 +78,33 @@ source "$HOME/.console/console.rc" 2>/dev/null
 ln -s ~/.console/drupal.fish ~/.config/fish/completions/drupal.fish
 ```
 
+## Generating Code with AI (`generate:ai`)
+
+This experimental command allows users to generate Drupal modules or themes by describing their requirements in natural language. These requirements are then processed by an AI service to generate the necessary code structure.
+
+### Workflow Overview
+
+1.  **Run the Command:** Execute `drupal generate:ai` in your terminal.
+2.  **Web Form:** A local PHP web server will automatically start, and a web browser will open displaying a form.
+3.  **Input Requirements:** Describe the module or theme you want to generate in the web form. Be as specific as possible regarding functionality, fields, content types, hooks, plugin types, styling, etc.
+4.  **AI Processing:** Upon submission, your requirements are sent to an AI service for code generation. (Note: Currently, this part of the workflow uses a *mock AI response* for testing and development purposes, so no actual external AI call is made.)
+5.  **Receive Code Structure:** Drupal Console receives the structured code data from the (mock) AI service.
+6.  **Choose Output:** You will be prompted in the terminal to either:
+    *   Save the generated code directly to your current Drupal site (e.g., into `modules/custom` or `themes/custom`).
+    *   Download the generated code as a ZIP file to your system's temporary directory.
+
+### Prerequisites
+
+*   **PHP Built-in Web Server:** Your PHP installation must be able to run its built-in web server.
+*   **`ZipArchive` PHP Extension:** Required if you choose the "Download as ZIP file" option.
+
+### Usage Example
+
+```bash
+drupal generate:ai
+```
+Then, follow the prompts in your console and the instructions in the web browser.
+
 ## Supporting organizations
 [![FFW](https://www.drupal.org/files/ffw-logo.png)](https://ffwagency.com)  
 [![Indava](https://www.drupal.org/files/indava-logo.png)](http://www.indava.com/)  

@@ -16,34 +16,32 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslationWrapper;
 use Drupal\Core\TypedData\DataDefinition;
+use Drupal\Core\Field\Attribute\FieldType;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 {% endblock %}
 
 {% block class_declaration %}
-/**
- * Plugin implementation of the '{{ plugin_id }}' field type.
- *
- * @FieldType(
- *   id = "{{ plugin_id }}",
- *   label = @Translation("{{ label }}"),
- *   description = @Translation("{{ description }}"){% if default_widget or default_formatter %},
+#[FieldType(
+  id: "{{ plugin_id }}",
+  label: new TranslatableMarkup("{{ label }}"),
+  description: new TranslatableMarkup("{{ description }}"){% if default_widget or default_formatter %},
 {% endif %}
 {% if default_widget %}
- *   default_widget = "{{ default_widget }}"{% if default_widget and default_formatter %},
+  default_widget: "{{ default_widget }}"{% if default_widget and default_formatter %},
 {% endif %}
 {% else %}
 
- *   @todo: Create and/or assign a default_widget.
- *   ex. default_widget = "field_widget"
+  // @todo: Create and/or assign a default_widget.
+  // ex. default_widget: "field_widget"
 {% endif %}
 {%  if default_formatter %}
- *   default_formatter = "{{ default_formatter }}"
+  default_formatter: "{{ default_formatter }}"
 {% else %}
 
- *   @todo: Create and/or assign a default_formatter.
- *   ex. default_formatter = "field_formatter"
+  // @todo: Create and/or assign a default_formatter.
+  // ex. default_formatter: "field_formatter"
 {%  endif %}
- * )
- */
+)]
 class {{ class_name }} extends FieldItemBase {% endblock %}
 {% block class_methods %}
   /**

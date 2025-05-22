@@ -11,18 +11,16 @@ namespace Drupal\{{module}}\Plugin\ImageEffect;
 {% block use_class %}
 use Drupal\Core\Image\ImageInterface;
 use Drupal\image\ImageEffectBase;
+use Drupal\Core\Image\Attribute\ImageEffect;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 {% endblock %}
 
 {% block class_declaration %}
-/**
- * Provides a '{{class_name}}' image effect.
- *
- * @ImageEffect(
- *  id = "{{plugin_id}}",
- *  label = @Translation("{{label}}"),
- *  description = @Translation("{{description}}")
- * )
- */
+#[ImageEffect(
+  id: "{{plugin_id}}",
+  label: new TranslatableMarkup("{{label}}"),
+  description: new TranslatableMarkup("{{description}}")
+)]
 class {{ class_name }} extends ImageEffectBase {% endblock %}
 {% block class_methods %}
   /**

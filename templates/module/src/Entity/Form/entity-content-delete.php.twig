@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{module}}\Entity\Form\{{ entity_class }}DeleteForm.
+\Drupal\{{machine_name}}\Entity\Form\{{ entity_class }}DeleteForm.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{module}}\Entity\Form;
+namespace Drupal\{{machine_name}}\Entity\Form;
 {% endblock %}
 
 {% block use_class %}
@@ -18,7 +18,7 @@ use Drupal\Core\Url;
 /**
  * Provides a form for deleting {{ label }} entities.
  *
- * @ingroup {{module}}
+ * @ingroup {{machine_name}}
  */
 class {{ entity_class }}DeleteForm extends ContentEntityConfirmFormBase {% endblock %}
 {% block class_methods %}

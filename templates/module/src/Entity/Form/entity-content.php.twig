@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{module}}\Entity\Form\{{ entity_class }}Form.
+\Drupal\{{machine_name}}\Entity\Form\{{ entity_class }}Form.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{module}}\Entity\Form;
+namespace Drupal\{{machine_name}}\Entity\Form;
 {% endblock %}
 
 {% block use_class %}
@@ -18,7 +18,7 @@ use Drupal\Core\Language\Language;
 /**
  * Form controller for {{ label }} edit forms.
  *
- * @ingroup {{module}}
+ * @ingroup {{machine_name}}
  */
 class {{ entity_class }}Form extends ContentEntityForm {% endblock %}
 {% block class_methods %}
@@ -26,7 +26,7 @@ class {{ entity_class }}Form extends ContentEntityForm {% endblock %}
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    /* @var $entity \Drupal\{{module}}\Entity\{{ entity_class }} */
+    /* @var $entity \Drupal\{{machine_name}}\Entity\{{ entity_class }} */
     $form = parent::buildForm($form, $form_state);
     $entity = $this->entity;
 

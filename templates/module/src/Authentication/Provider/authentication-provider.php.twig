@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{module}}\Authentication\Provider\{{class_name}}.
+\Drupal\{{machine_name}}\Authentication\Provider\{{class_name}}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{module}}\Authentication\Provider;
+namespace Drupal\{{machine_name}}\Authentication\Provider;
 {% endblock %}
 
 {% block use_class %}
@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 /**
  * Class {{ class_name }}.
  *
- * @package Drupal\{{module}}\Authentication\Provider
+ * @package Drupal\{{machine_name}}\Authentication\Provider
  */
 class {{ class_name }} implements AuthenticationProviderInterface {% endblock %}
 {% block class_variables %}

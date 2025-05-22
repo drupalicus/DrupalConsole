@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{ module }}\Plugin\Field\FieldFormatter\{{ class_name }}.
+\Drupal\{{ machine_name }}\Plugin\Field\FieldFormatter\{{ class_name }}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{ module }}\Plugin\Field\FieldFormatter;
+namespace Drupal\{{ machine_name }}\Plugin\Field\FieldFormatter;
 {% endblock %}
 
 {% block use_class %}
@@ -14,25 +14,23 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Field\Attribute\FieldFormatter;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 {% endblock %}
 
 {% block class_declaration %}
-/**
- * Plugin implementation of the '{{ plugin_id }}' formatter.
- *
- * @FieldFormatter(
- *   id = "{{ plugin_id }}",
- *   label = @Translation("{{ label }}"){% if field_type %},
- *   field_types = {
- *     "{{ field_type }}"
- *   }
+#[FieldFormatter(
+  id: "{{ plugin_id }}",
+  label: new TranslatableMarkup("{{ label }}"){% if field_type %},
+  field_types: [
+    "{{ field_type }}"
+  ]
 {% else %}
 
- *   @todo: At least one field_types annotation array entry is necessary to display this formatter in the UI.
- *   ex. field_types = { "field_type" }
+  // @todo: At least one field_types array entry is necessary to display this formatter in the UI.
+  // ex. field_types: ["field_type"]
 {% endif %}
- * )
- */
+)]
 class {{ class_name }} extends FormatterBase {% endblock %}
 {% block class_methods %}
   /**

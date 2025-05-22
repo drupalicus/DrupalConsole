@@ -1,15 +1,17 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{module}}\Plugin\Block\{{class_name}}.
+\Drupal\{{machine_name}}\Plugin\Block\{{class_name}}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{module}}\Plugin\Block;
+namespace Drupal\{{machine_name}}\Plugin\Block;
 {% endblock %}
 
 {% block use_class %}
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Block\Attribute\AsBlock;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 {% if inputs %}
 use Drupal\Core\Form\FormStateInterface;
 {% endif %}
@@ -20,14 +22,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 {% endblock %}
 
 {% block class_declaration %}
-/**
- * Provides a '{{class_name}}' block.
- *
- * @Block(
- *  id = "{{plugin_id}}",
- *  admin_label = @Translation("{{label}}"),
- * )
- */
+#[AsBlock(
+  id: "{{plugin_id}}",
+  admin_label: new TranslatableMarkup("{{label}}"),
+  category: new TranslatableMarkup("{{machine_name}}")
+)]
 class {{class_name}} extends BlockBase {% if services is not empty %}implements ContainerFactoryPluginInterface {% endif %}
 {% endblock %}
 

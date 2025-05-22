@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{ module }}\Annotation\{{ class_name }}.
+\Drupal\{{ machine_name }}\Annotation\{{ class_name }}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{ module }}\Annotation;
+namespace Drupal\{{ machine_name }}\Annotation;
 {% endblock %}
 
 {% block use_class %}
@@ -16,7 +16,7 @@ use Drupal\Component\Annotation\Plugin;
 /**
  * Defines a {{ label }} item annotation object.
  *
- * @see \Drupal\{{ module }}\Plugin\{{ class_name }}Manager
+ * @see \Drupal\{{ machine_name }}\Plugin\{{ class_name }}Manager
  * @see plugin_api
  *
  * @Annotation

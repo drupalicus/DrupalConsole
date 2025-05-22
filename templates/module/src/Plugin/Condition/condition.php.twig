@@ -1,32 +1,33 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{ module }}\Plugin\Condition\{{ class_name }}.
+\Drupal\{{ machine_name }}\Plugin\Condition\{{ class_name }}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{ module }}\Plugin\Condition;
+namespace Drupal\{{ machine_name }}\Plugin\Condition;
 {% endblock %}
 
 {% block use_class %}
 use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Plugin\Context\ContextDefinition;
+use Drupal\Core\Condition\Attribute\Condition;
+use Drupal\Core\Plugin\Context\Attribute\ContextDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 {% endblock %}
 
 {% block class_declaration %}
-/**
-* Provides a '{{ label }}' condition to enable a condition based in module selected status.
-*
-* @Condition(
-*   id = "{{ plugin_id }}",
-*   label = @Translation("{{ label }}"),
-*   context = {
-*     "{{ context_id }}" = @ContextDefinition("{{ context_definition_id }}", required = {{ context_definition_required }} , label = @Translation("{{ context_definition_label }}"))
-*   }
-* )
-*
-*/
+#[Condition(
+  id: "{{ plugin_id }}",
+  label: new TranslatableMarkup("{{ label }}"),
+  context_definitions: [
+    "{{ context_id }}" => new ContextDefinition(
+      id: "{{ context_definition_id }}",
+      label: new TranslatableMarkup("{{ context_definition_label }}"),
+      required: {{ context_definition_required }}
+    )
+  ]
+)]
 class {{ class_name }} extends ConditionPluginBase {% endblock %}
 {% block class_methods %}
 /**

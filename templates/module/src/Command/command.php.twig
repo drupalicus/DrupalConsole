@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{module}}\Command\{{ class }}.
+\Drupal\{{machine_name}}\Command\{{ class }}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{module}}\Command;
+namespace Drupal\{{machine_name}}\Command;
 {% endblock %}
 
 {% block use_class %}
@@ -24,7 +24,7 @@ use Drupal\Console\Command\Command;
 /**
  * Class {{ class }}.
  *
- * @package Drupal\{{module}}
+ * @package Drupal\{{machine_name}}
  */
 class {{ class }} extends {% if container_aware %}ContainerAwareCommand{% else %}Command{% endif %} {% endblock %}
 

@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{ module }}\Form\{{ entity_class }}Form.
+\Drupal\{{ machine_name }}\Form\{{ entity_class }}Form.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{ module }}\Form;
+namespace Drupal\{{ machine_name }}\Form;
 {% endblock %}
 
 {% block use_class %}
@@ -18,7 +18,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Class {{ entity_class }}Form.
  *
- * @package Drupal\{{ module }}\Form
+ * @package Drupal\{{ machine_name }}\Form
  */
 class {{ entity_class }}Form extends EntityForm {% endblock %}
 {% block class_methods %}
@@ -42,7 +42,7 @@ class {{ entity_class }}Form extends EntityForm {% endblock %}
       '#type' => 'machine_name',
       '#default_value' => ${{ entity_name | machine_name }}->id(),
       '#machine_name' => array(
-        'exists' => '\Drupal\{{ module }}\Entity\{{ entity_class }}::load',
+        'exists' => '\Drupal\{{ machine_name }}\Entity\{{ entity_class }}::load',
       ),
       '#disabled' => !${{ entity_name | machine_name }}->isNew(),
     );

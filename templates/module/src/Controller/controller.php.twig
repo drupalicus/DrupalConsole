@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{module}}\Controller\{{ class_name }}.
+\Drupal\{{machine_name}}\Controller\{{ class_name }}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{module}}\Controller;
+namespace Drupal\{{machine_name}}\Controller;
 {% endblock %}
 
 {% block use_class %}
@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Class {{ class_name }}.
  *
- * @package Drupal\{{ module }}\Controller
+ * @package Drupal\{{ machine_name }}\Controller
  */
 class {{ class_name }} extends ControllerBase {% endblock %}
 {% block class_construct %}

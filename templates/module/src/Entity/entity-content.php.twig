@@ -1,11 +1,11 @@
 {% extends "base/class.php.twig" %}
 
 {% block file_path %}
-\Drupal\{{ module }}\Entity\{{ entity_class }}.
+\Drupal\{{ machine_name }}\Entity\{{ entity_class }}.
 {% endblock %}
 
 {% block namespace_class %}
-namespace Drupal\{{ module }}\Entity;
+namespace Drupal\{{ machine_name }}\Entity;
 {% endblock %}
 
 {% block use_class %}
@@ -14,47 +14,42 @@ use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\{{ module }}\{{ entity_class }}Interface;
+use Drupal\{{ machine_name }}\{{ entity_class }}Interface;
 use Drupal\user\UserInterface;
+use Drupal\Core\Entity\Attribute\ContentEntityType;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 {% endblock %}
 
 {% block class_declaration %}
-/**
- * Defines the {{ label }} entity.
- *
- * @ingroup {{ module }}
- *
- * @ContentEntityType(
- *   id = "{{ entity_name }}",
- *   label = @Translation("{{ label }}"),
- *   handlers = {
- *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\{{ module }}\{{ entity_class }}ListBuilder",
- *     "views_data" = "Drupal\{{ module }}\Entity\{{ entity_class }}ViewsData",
- *
- *     "form" = {
- *       "default" = "Drupal\{{ module }}\Entity\Form\{{ entity_class }}Form",
- *       "add" = "Drupal\{{ module }}\Entity\Form\{{ entity_class }}Form",
- *       "edit" = "Drupal\{{ module }}\Entity\Form\{{ entity_class }}Form",
- *       "delete" = "Drupal\{{ module }}\Entity\Form\{{ entity_class }}DeleteForm",
- *     },
- *     "access" = "Drupal\{{ module }}\{{ entity_class }}AccessControlHandler",
- *   },
- *   base_table = "{{ entity_name }}",
- *   admin_permission = "administer {{ entity_class }} entity",
- *   entity_keys = {
- *     "id" = "id",
- *     "label" = "name",
- *     "uuid" = "uuid"
- *   },
- *   links = {
- *     "canonical" = "/admin/{{ entity_name }}/{{ '{'~entity_name~'}' }}",
- *     "edit-form" = "/admin/{{ entity_name }}/{{ '{'~entity_name~'}' }}/edit",
- *     "delete-form" = "/admin/{{ entity_name }}/{{ '{'~entity_name~'}' }}/delete"
- *   },
- *   field_ui_base_route = "{{ entity_name }}.settings"
- * )
- */
+#[ContentEntityType(
+  id: "{{ entity_name }}",
+  label: new TranslatableMarkup("{{ label }}"),
+  handlers: [
+    "view_builder" => "Drupal\\Core\\Entity\\EntityViewBuilder",
+    "list_builder" => "Drupal\\{{ machine_name }}\\{{ entity_class }}ListBuilder",
+    "views_data" => "Drupal\\{{ machine_name }}\\Entity\\{{ entity_class }}ViewsData",
+    "form" => [
+      "default" => "Drupal\\{{ machine_name }}\\Entity\\Form\\{{ entity_class }}Form",
+      "add" => "Drupal\\{{ machine_name }}\\Entity\\Form\\{{ entity_class }}Form",
+      "edit" => "Drupal\\{{ machine_name }}\\Entity\\Form\\{{ entity_class }}Form",
+      "delete" => "Drupal\\{{ machine_name }}\\Entity\\Form\\{{ entity_class }}DeleteForm",
+    ],
+    "access" => "Drupal\\{{ machine_name }}\\{{ entity_class }}AccessControlHandler",
+  ],
+  base_table: "{{ entity_name }}",
+  admin_permission: "administer {{ entity_name }} entities",
+  entity_keys: [
+    "id" => "id",
+    "label" => "name",
+    "uuid" => "uuid"
+  ],
+  links: [
+    "canonical" => "/admin/{{ entity_name }}/{{ '{'~entity_name~'}' }}",
+    "edit-form" => "/admin/{{ entity_name }}/{{ '{'~entity_name~'}' }}/edit",
+    "delete-form" => "/admin/{{ entity_name }}/{{ '{'~entity_name~'}' }}/delete"
+  ],
+  field_ui_base_route: "{{ entity_name }}.settings"
+)]
 class {{ entity_class }} extends ContentEntityBase implements {{ entity_class }}Interface {% endblock %}
 {% block use_trait %}
   use EntityChangedTrait;
